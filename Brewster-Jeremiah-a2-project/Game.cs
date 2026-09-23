@@ -45,10 +45,41 @@ namespace MohawkGame2D
             //Draw.Circle(110, 130, 1); //top point
 
             //----LEFT EYE----
+            //-Eye white-
+            Draw.SetLineSize(0);
+            Draw.SetFillColor(255, 255, 255);
+            Draw.Rectangle(40, 130, 140, 60);
+
+            //-Pupil and iris-
+            //Calcuate amount to shift; based on square root of distace
+            float Xdiff = Input.GetMouseX() - baseX_left;
+            float Ydiff = Input.GetMouseY() - baseY_left;
+            float displacement = MathF.Sqrt(MathF.Sqrt(MathF.Pow(Xdiff, 2) + MathF.Pow(Ydiff, 2)));
+            //Calcuate the direction to shift with sin and cos
+            float angle = MathF.Atan(Xdiff / MathF.Abs(Ydiff));
+            Xdiff = MathF.Sin(angle);
+            Ydiff = MathF.Cos(angle) * MathF.Sign(Ydiff);
+
+            Draw.SetLineSize(0);
+            Draw.SetFillColor("#64C4FF");
+            Draw.Circle(baseX_left + Xdiff*displacement, baseY_left + Ydiff*displacement, 30);
+            Draw.SetFillColor(Color.Black);
+            Draw.Circle(baseX_left + Xdiff*displacement*1.3f, baseY_left + Ydiff*displacement*1.3f, 15);
+
+            ////Guide for testing the eye movement
+            //Draw.SetFillColor(Color.Red);
+            //Draw.Circle(baseX_left, baseY_left, 5);
+            //Draw.SetLineColor(Color.Red);
+            //Draw.SetLineSize(1);
+            //Draw.Line(baseX_left, baseY_left, Input.GetMouseX(), Input.GetMouseY());
+            //Draw.SetFillColor(Color.Green);
+            //Draw.Circle(baseX_left + Xdiff*displacement, baseY_left + Ydiff*displacement, 2);
+
             //-Eye boundries-
             Draw.SetLineColor(Color.Black);
             Draw.SetLineSize(2); 
             //Top
+            //Use sin and cos to draw lines mapped onto a circle
             //center point for top circle is (110, 227); rotation per point is 9.28 degrees
             Draw.Line(110 - 97*MathF.Cos(43.6f*degree), 227 - 97*MathF.Sin(43.6f*degree),
                 110 - 97*MathF.Cos(52.88f*degree), 227 - 97*MathF.Sin(52.88f*degree));
@@ -71,7 +102,7 @@ namespace MohawkGame2D
             Draw.Line(110 - 97*MathF.Cos(127.12f*degree), 227 - 97*MathF.Sin(127.12f*degree),
                 110 - 97*MathF.Cos(136.4f*degree), 227 - 97*MathF.Sin(136.4f*degree));
             //Bottom
-            //center point for top circle is (110, 93); rotation per point is 9.28 degrees
+            //center point for top circle is (110, 93)
             Draw.Line(110 + 97*MathF.Cos(43.6f*degree), 93 + 97*MathF.Sin(43.6f*degree),
                 110 + 97*MathF.Cos(52.88f*degree), 93 + 97*MathF.Sin(52.88f*degree));
             Draw.Line(110 + 97*MathF.Cos(52.88f*degree), 93 + 97*MathF.Sin(52.88f*degree),
