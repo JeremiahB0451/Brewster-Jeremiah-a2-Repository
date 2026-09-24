@@ -61,7 +61,7 @@ namespace MohawkGame2D
             //----LEFT EYE----
             //-Eye white-
             Draw.SetLineSize(0);
-            Draw.SetFillColor(255, 255, 255);
+            Draw.SetFillColor(255, (int)(255*(1-agitation_left)), (int)(255*(1-agitation_left)));
             Draw.Rectangle(40, 130, 140, 60);
 
             //-Pupil and iris-
@@ -141,9 +141,9 @@ namespace MohawkGame2D
             //-Eyelids-
             //Identical to the boundries, but thicker, and shifted up and down
             //hides the pupil and iris when outside of eye boundries
-            Draw.SetLineColor(Color.OffWhite);
-            Draw.SetLineSize(38);
-            int shift = 20;
+            Draw.SetLineColor(Color.Red);
+            Draw.SetLineSize(2);
+            int shift = 2;
             //Top
             Draw.Line(110 - 97 * MathF.Cos(43.6f * degree), 227-shift - 97 * MathF.Sin(43.6f * degree),
                 110 - 97 * MathF.Cos(52.88f * degree), 227-shift - 97 * MathF.Sin(52.88f * degree));
