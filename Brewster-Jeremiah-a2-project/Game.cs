@@ -14,6 +14,7 @@ namespace MohawkGame2D
         //Left eye variables
         float baseX_left = 110;
         float baseY_left = 160;
+        float agitation_left = 0;
         float degree = MathF.PI / 180;
 
         /// <summary>
@@ -31,6 +32,19 @@ namespace MohawkGame2D
         public void Update()
         {
             Window.ClearBackground(Color.OffWhite);
+
+            //Decrement agitation avery frame
+            if (agitation_left > 0) {
+                agitation_left -= 0.0025f;
+            }
+            //Clicking logic for left eye; hitbox is the rectangle bounding the eye
+            if (Input.GetMouseX() > 40 && Input.GetMouseX() < 180 && Input.GetMouseY() > 130 && Input.GetMouseY() < 190 && Input.IsMouseButtonPressed(MouseButton.Left)) {
+                agitation_left += 0.2f;
+            }
+            //Cap agitation to 1
+            if (agitation_left > 1) {
+                agitation_left = 1;
+            }
 
             ////Guiding circles/dots for left eye
             //Draw.SetLineColor(Color.Green);
@@ -82,46 +96,46 @@ namespace MohawkGame2D
             //Use sin and cos to draw lines mapped onto a circle
             //center point for top circle is (110, 227); rotation per point is 9.28 degrees
             Draw.Line(110 - 97*MathF.Cos(43.6f*degree), 227 - 97*MathF.Sin(43.6f*degree),
-                110 - 97*MathF.Cos(52.88f*degree), 227 - 97*MathF.Sin(52.88f*degree));
-            Draw.Line(110 - 97*MathF.Cos(52.88f*degree), 227 - 97*MathF.Sin(52.88f*degree),
-                110 - 97*MathF.Cos(62.16f*degree), 227 - 97*MathF.Sin(62.16f*degree));
-            Draw.Line(110 - 97*MathF.Cos(62.16f*degree), 227 - 97*MathF.Sin(62.16f*degree),
-                110 - 97*MathF.Cos(71.44f*degree), 227 - 97*MathF.Sin(71.44f*degree));
-            Draw.Line(110 - 97*MathF.Cos(71.44f*degree), 227 - 97*MathF.Sin(71.44f*degree),
-                110 - 97*MathF.Cos(80.72f*degree), 227 - 97*MathF.Sin(80.72f*degree));
-            Draw.Line(110 - 97*MathF.Cos(80.72f*degree), 227 - 97*MathF.Sin(80.72f*degree),
-                110 - 97*MathF.Cos(90*degree), 227 - 97*MathF.Sin(90*degree));
-            Draw.Line(110 - 97*MathF.Cos(90*degree), 227 - 97*MathF.Sin(90*degree),
-                110 - 97*MathF.Cos(99.28f*degree), 227 - 97*MathF.Sin(99.28f*degree));
-            Draw.Line(110 - 97*MathF.Cos(99.28f*degree), 227 - 97*MathF.Sin(99.28f*degree),
-                110 - 97*MathF.Cos(108.56f*degree), 227 - 97*MathF.Sin(108.56f*degree));
-            Draw.Line(110 - 97*MathF.Cos(108.56f*degree), 227 - 97*MathF.Sin(108.56f*degree),
-                110 - 97*MathF.Cos(117.84f*degree), 227 - 97*MathF.Sin(117.84f*degree));
-            Draw.Line(110 - 97*MathF.Cos(117.84f*degree), 227 - 97*MathF.Sin(117.84f*degree),
-                110 - 97*MathF.Cos(127.12f*degree), 227 - 97*MathF.Sin(127.12f*degree));
-            Draw.Line(110 - 97*MathF.Cos(127.12f*degree), 227 - 97*MathF.Sin(127.12f*degree),
+                110 - 97*MathF.Cos(52.88f*degree), 227 - 97*MathF.Sin(52.88f*degree) - (227-97*MathF.Sin(52.88f*degree)-160)*0.75f*agitation_left);
+            Draw.Line(110 - 97*MathF.Cos(52.88f*degree), 227 - 97*MathF.Sin(52.88f*degree) - (227-97*MathF.Sin(52.88f*degree)-160)*0.75f*agitation_left,
+                110 - 97*MathF.Cos(62.16f*degree), 227 - 97*MathF.Sin(62.16f*degree) - (227-97*MathF.Sin(62.16f*degree)-160)*0.75f*agitation_left);
+            Draw.Line(110 - 97*MathF.Cos(62.16f*degree), 227 - 97*MathF.Sin(62.16f*degree) - (227-97*MathF.Sin(62.16f*degree)-160)*0.75f*agitation_left,
+                110 - 97*MathF.Cos(71.44f*degree), 227 - 97*MathF.Sin(71.44f*degree) - (227-97*MathF.Sin(71.44f*degree)-160)*0.75f*agitation_left);
+            Draw.Line(110 - 97*MathF.Cos(71.44f*degree), 227 - 97*MathF.Sin(71.44f*degree) - (227-97*MathF.Sin(71.44f*degree)-160)*0.75f*agitation_left,
+                110 - 97*MathF.Cos(80.72f*degree), 227 - 97*MathF.Sin(80.72f*degree) - (227-97*MathF.Sin(80.72f*degree)-160)*0.75f*agitation_left);
+            Draw.Line(110 - 97*MathF.Cos(80.72f*degree), 227 - 97*MathF.Sin(80.72f*degree) - (227-97*MathF.Sin(80.72f*degree)-160)*0.75f*agitation_left,
+                110 - 97*MathF.Cos(90*degree), 227 - 97*MathF.Sin(90*degree) - (227-97*MathF.Sin(90*degree)-160)*0.75f*agitation_left);
+            Draw.Line(110 - 97*MathF.Cos(90*degree), 227 - 97*MathF.Sin(90*degree) - (227-97*MathF.Sin(90*degree)-160)*0.75f*agitation_left,
+                110 - 97*MathF.Cos(99.28f*degree), 227 - 97*MathF.Sin(99.28f*degree) - (227-97*MathF.Sin(99.28f*degree)-160)*0.75f*agitation_left);
+            Draw.Line(110 - 97*MathF.Cos(99.28f*degree), 227 - 97*MathF.Sin(99.28f*degree) - (227-97*MathF.Sin(99.28f*degree)-160)*0.75f*agitation_left,
+                110 - 97*MathF.Cos(108.56f*degree), 227 - 97*MathF.Sin(108.56f*degree) - (227-97*MathF.Sin(108.56f*degree)-160)*0.75f*agitation_left);
+            Draw.Line(110 - 97*MathF.Cos(108.56f*degree), 227 - 97*MathF.Sin(108.56f*degree) - (227-97*MathF.Sin(108.56f*degree)-160)*0.75f*agitation_left,
+                110 - 97*MathF.Cos(117.84f*degree), 227 - 97*MathF.Sin(117.84f*degree) - (227-97*MathF.Sin(117.84f*degree)-160)*0.75f*agitation_left);
+            Draw.Line(110 - 97*MathF.Cos(117.84f*degree), 227 - 97*MathF.Sin(117.84f*degree) - (227-97*MathF.Sin(117.84f*degree)-160)*0.75f*agitation_left,
+                110 - 97*MathF.Cos(127.12f*degree), 227 - 97*MathF.Sin(127.12f*degree) - (227-97*MathF.Sin(127.12f*degree)-160)*0.75f*agitation_left);
+            Draw.Line(110 - 97*MathF.Cos(127.12f*degree), 227 - 97*MathF.Sin(127.12f*degree) - (227-97*MathF.Sin(127.12f*degree)-160)*0.75f*agitation_left,
                 110 - 97*MathF.Cos(136.4f*degree), 227 - 97*MathF.Sin(136.4f*degree));
             //Bottom
             //center point for top circle is (110, 93)
             Draw.Line(110 + 97*MathF.Cos(43.6f*degree), 93 + 97*MathF.Sin(43.6f*degree),
-                110 + 97*MathF.Cos(52.88f*degree), 93 + 97*MathF.Sin(52.88f*degree));
-            Draw.Line(110 + 97*MathF.Cos(52.88f*degree), 93 + 97*MathF.Sin(52.88f*degree),
-                110 + 97*MathF.Cos(62.16f*degree), 93 + 97*MathF.Sin(62.16f*degree));
-            Draw.Line(110 + 97*MathF.Cos(62.16f*degree), 93 + 97*MathF.Sin(62.16f*degree),
-                110 + 97*MathF.Cos(71.44f*degree), 93 + 97*MathF.Sin(71.44f*degree));
-            Draw.Line(110 + 97*MathF.Cos(71.44f*degree), 93 + 97*MathF.Sin(71.44f*degree),
-                110 + 97*MathF.Cos(80.72f*degree), 93 + 97*MathF.Sin(80.72f*degree));
-            Draw.Line(110 + 97*MathF.Cos(80.72f*degree), 93 + 97*MathF.Sin(80.72f*degree),
-                110 + 97*MathF.Cos(90*degree), 93 + 97*MathF.Sin(90*degree));
-            Draw.Line(110 + 97*MathF.Cos(90*degree), 93 + 97*MathF.Sin(90*degree),
-                110 + 97*MathF.Cos(99.28f*degree), 93 + 97*MathF.Sin(99.28f*degree));
-            Draw.Line(110 + 97*MathF.Cos(99.28f*degree), 93 + 97*MathF.Sin(99.28f*degree),
-                110 + 97*MathF.Cos(108.56f*degree), 93 + 97*MathF.Sin(108.56f*degree));
-            Draw.Line(110 + 97*MathF.Cos(108.56f*degree), 93 + 97*MathF.Sin(108.56f*degree),
-                110 + 97*MathF.Cos(117.84f*degree), 93 + 97*MathF.Sin(117.84f*degree));
-            Draw.Line(110 + 97*MathF.Cos(117.84f*degree), 93 + 97*MathF.Sin(117.84f*degree),
-                110 + 97*MathF.Cos(127.12f*degree), 93 + 97*MathF.Sin(127.12f*degree));
-            Draw.Line(110 + 97*MathF.Cos(127.12f*degree), 93 + 97*MathF.Sin(127.12f*degree),
+                110 + 97*MathF.Cos(52.88f*degree), 93 + 97*MathF.Sin(52.88f*degree) - (93+97*MathF.Sin(52.88f*degree)-160)*0.75f*agitation_left);
+            Draw.Line(110 + 97*MathF.Cos(52.88f*degree), 93 + 97*MathF.Sin(52.88f*degree) - (93+97*MathF.Sin(52.88f*degree)-160)*0.75f*agitation_left,
+                110 + 97*MathF.Cos(62.16f*degree), 93 + 97*MathF.Sin(62.16f*degree) - (93+97*MathF.Sin(62.16f*degree)-160)*0.75f*agitation_left);
+            Draw.Line(110 + 97*MathF.Cos(62.16f*degree), 93 + 97*MathF.Sin(62.16f*degree) - (93+97*MathF.Sin(62.16f*degree)-160)*0.75f*agitation_left,
+                110 + 97*MathF.Cos(71.44f*degree), 93 + 97*MathF.Sin(71.44f*degree) - (93+97*MathF.Sin(71.44f*degree)-160)*0.75f*agitation_left);
+            Draw.Line(110 + 97*MathF.Cos(71.44f*degree), 93 + 97*MathF.Sin(71.44f*degree) - (93+97*MathF.Sin(71.44f*degree)-160)*0.75f*agitation_left,
+                110 + 97*MathF.Cos(80.72f*degree), 93 + 97*MathF.Sin(80.72f*degree) - (93+97*MathF.Sin(80.72f*degree)-160)*0.75f*agitation_left);
+            Draw.Line(110 + 97*MathF.Cos(80.72f*degree), 93 + 97*MathF.Sin(80.72f*degree) - (93+97*MathF.Sin(80.72f*degree)-160)*0.75f*agitation_left,
+                110 + 97*MathF.Cos(90*degree), 93 + 97*MathF.Sin(90*degree) - (93+97*MathF.Sin(90*degree)-160)*0.75f*agitation_left);
+            Draw.Line(110 + 97*MathF.Cos(90*degree), 93 + 97*MathF.Sin(90*degree) - (93+97*MathF.Sin(90*degree)-160)*0.75f*agitation_left,
+                110 + 97*MathF.Cos(99.28f*degree), 93 + 97*MathF.Sin(99.28f*degree) - (93+97*MathF.Sin(99.28f*degree)-160)*0.75f*agitation_left);
+            Draw.Line(110 + 97*MathF.Cos(99.28f*degree), 93 + 97*MathF.Sin(99.28f*degree) - (93+97*MathF.Sin(99.28f*degree)-160)*0.75f*agitation_left,
+                110 + 97*MathF.Cos(108.56f*degree), 93 + 97*MathF.Sin(108.56f*degree) - (93+97*MathF.Sin(108.56f*degree)-160)*0.75f*agitation_left);
+            Draw.Line(110 + 97*MathF.Cos(108.56f*degree), 93 + 97*MathF.Sin(108.56f*degree) - (93+97*MathF.Sin(108.56f*degree)-160)*0.75f*agitation_left,
+                110 + 97*MathF.Cos(117.84f*degree), 93 + 97*MathF.Sin(117.84f*degree) - (93+97*MathF.Sin(117.84f*degree)-160)*0.75f*agitation_left);
+            Draw.Line(110 + 97*MathF.Cos(117.84f*degree), 93 + 97*MathF.Sin(117.84f*degree) - (93+97*MathF.Sin(117.84f*degree)-160)*0.75f*agitation_left,
+                110 + 97*MathF.Cos(127.12f*degree), 93 + 97*MathF.Sin(127.12f*degree) - (93+97*MathF.Sin(127.12f*degree)-160)*0.75f*agitation_left);
+            Draw.Line(110 + 97*MathF.Cos(127.12f*degree), 93 + 97*MathF.Sin(127.12f*degree) - (93+97*MathF.Sin(127.12f*degree)-160)*0.75f*agitation_left,
                 110 + 97*MathF.Cos(136.4f*degree), 93 + 97*MathF.Sin(136.4f*degree));
 
             //-Eyelids-
