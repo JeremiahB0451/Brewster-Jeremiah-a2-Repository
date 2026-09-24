@@ -16,6 +16,8 @@ namespace MohawkGame2D
         float baseY_left = 160;
         float agitation_left = 0;
         float degree = MathF.PI / 180;
+        float small_radius = 97 + 2/3;
+        float big_radius = 127 + 2/3;
 
         /// <summary>
         ///     Setup runs once before the game loop begins.
@@ -32,6 +34,10 @@ namespace MohawkGame2D
         public void Update()
         {
             Window.ClearBackground(Color.OffWhite);
+            float start_angle_small = 43.6f * degree;
+            float delta_angle_small = 9.28f * degree;
+            float start_angle_big = 31.27f * degree;
+            float delta_angle_big = 11.7f * degree;
 
             //Decrement agitation avery frame
             if (agitation_left > 0) {
@@ -91,112 +97,109 @@ namespace MohawkGame2D
 
             //-Eye boundries-
             Draw.SetLineColor(Color.Black);
-            Draw.SetLineSize(2);
+            Draw.SetLineSize(1);
             //Top
             //Use sin and cos to draw lines mapped onto a circle
-            //center point for top circle is (110, 227); rotation per point is 9.28 degrees
             //           X                                  Y                                 movement
             {
-                Draw.Line(110 - 97 * MathF.Cos(43.6f * degree), 227 - 97 * MathF.Sin(43.6f * degree),
-                    110 - 97 * MathF.Cos(52.88f * degree), 227 - 97 * MathF.Sin(52.88f * degree) - (227 - 97 * MathF.Sin(52.88f * degree) - 160) * 0.75f * agitation_left);
-                Draw.Line(110 - 97 * MathF.Cos(52.88f * degree), 227 - 97 * MathF.Sin(52.88f * degree) - (227 - 97 * MathF.Sin(52.88f * degree) - 160) * 0.75f * agitation_left,
-                    110 - 97 * MathF.Cos(62.16f * degree), 227 - 97 * MathF.Sin(62.16f * degree) - (227 - 97 * MathF.Sin(62.16f * degree) - 160) * 0.75f * agitation_left);
-                Draw.Line(110 - 97 * MathF.Cos(62.16f * degree), 227 - 97 * MathF.Sin(62.16f * degree) - (227 - 97 * MathF.Sin(62.16f * degree) - 160) * 0.75f * agitation_left,
-                    110 - 97 * MathF.Cos(71.44f * degree), 227 - 97 * MathF.Sin(71.44f * degree) - (227 - 97 * MathF.Sin(71.44f * degree) - 160) * 0.75f * agitation_left);
-                Draw.Line(110 - 97 * MathF.Cos(71.44f * degree), 227 - 97 * MathF.Sin(71.44f * degree) - (227 - 97 * MathF.Sin(71.44f * degree) - 160) * 0.75f * agitation_left,
-                    110 - 97 * MathF.Cos(80.72f * degree), 227 - 97 * MathF.Sin(80.72f * degree) - (227 - 97 * MathF.Sin(80.72f * degree) - 160) * 0.75f * agitation_left);
-                Draw.Line(110 - 97 * MathF.Cos(80.72f * degree), 227 - 97 * MathF.Sin(80.72f * degree) - (227 - 97 * MathF.Sin(80.72f * degree) - 160) * 0.75f * agitation_left,
-                    110 - 97 * MathF.Cos(90 * degree), 227 - 97 * MathF.Sin(90 * degree) - (227 - 97 * MathF.Sin(90 * degree) - 160) * 0.75f * agitation_left);
-                Draw.Line(110 - 97 * MathF.Cos(90 * degree), 227 - 97 * MathF.Sin(90 * degree) - (227 - 97 * MathF.Sin(90 * degree) - 160) * 0.75f * agitation_left,
-                    110 - 97 * MathF.Cos(99.28f * degree), 227 - 97 * MathF.Sin(99.28f * degree) - (227 - 97 * MathF.Sin(99.28f * degree) - 160) * 0.75f * agitation_left);
-                Draw.Line(110 - 97 * MathF.Cos(99.28f * degree), 227 - 97 * MathF.Sin(99.28f * degree) - (227 - 97 * MathF.Sin(99.28f * degree) - 160) * 0.75f * agitation_left,
-                    110 - 97 * MathF.Cos(108.56f * degree), 227 - 97 * MathF.Sin(108.56f * degree) - (227 - 97 * MathF.Sin(108.56f * degree) - 160) * 0.75f * agitation_left);
-                Draw.Line(110 - 97 * MathF.Cos(108.56f * degree), 227 - 97 * MathF.Sin(108.56f * degree) - (227 - 97 * MathF.Sin(108.56f * degree) - 160) * 0.75f * agitation_left,
-                    110 - 97 * MathF.Cos(117.84f * degree), 227 - 97 * MathF.Sin(117.84f * degree) - (227 - 97 * MathF.Sin(117.84f * degree) - 160) * 0.75f * agitation_left);
-                Draw.Line(110 - 97 * MathF.Cos(117.84f * degree), 227 - 97 * MathF.Sin(117.84f * degree) - (227 - 97 * MathF.Sin(117.84f * degree) - 160) * 0.75f * agitation_left,
-                    110 - 97 * MathF.Cos(127.12f * degree), 227 - 97 * MathF.Sin(127.12f * degree) - (227 - 97 * MathF.Sin(127.12f * degree) - 160) * 0.75f * agitation_left);
-                Draw.Line(110 - 97 * MathF.Cos(127.12f * degree), 227 - 97 * MathF.Sin(127.12f * degree) - (227 - 97 * MathF.Sin(127.12f * degree) - 160) * 0.75f * agitation_left,
-                    110 - 97 * MathF.Cos(136.4f * degree), 227 - 97 * MathF.Sin(136.4f * degree));
+                Draw.Line(baseX_left - small_radius * MathF.Cos(43.6f * degree), baseY_left-30+small_radius - small_radius * MathF.Sin(43.6f * degree),
+                    baseX_left - small_radius * MathF.Cos(52.88f * degree), baseY_left-30+small_radius - small_radius * MathF.Sin(52.88f * degree) - (baseY_left-30+small_radius - small_radius * MathF.Sin(52.88f * degree) - 160) * 0.75f * agitation_left);
+                Draw.Line(baseX_left - small_radius * MathF.Cos(52.88f * degree), baseY_left-30+small_radius - small_radius * MathF.Sin(52.88f * degree) - (baseY_left-30+small_radius - small_radius * MathF.Sin(52.88f * degree) - 160) * 0.75f * agitation_left,
+                    baseX_left - small_radius * MathF.Cos(62.16f * degree), baseY_left-30+small_radius - small_radius * MathF.Sin(62.16f * degree) - (baseY_left-30+small_radius - small_radius * MathF.Sin(62.16f * degree) - 160) * 0.75f * agitation_left);
+                Draw.Line(baseX_left - small_radius * MathF.Cos(62.16f * degree), baseY_left-30+small_radius - small_radius * MathF.Sin(62.16f * degree) - (baseY_left-30+small_radius - small_radius * MathF.Sin(62.16f * degree) - 160) * 0.75f * agitation_left,
+                    baseX_left - small_radius * MathF.Cos(71.44f * degree), baseY_left-30+small_radius - small_radius * MathF.Sin(71.44f * degree) - (baseY_left-30+small_radius - small_radius * MathF.Sin(71.44f * degree) - 160) * 0.75f * agitation_left);
+                Draw.Line(baseX_left - small_radius * MathF.Cos(71.44f * degree), baseY_left-30+small_radius - small_radius * MathF.Sin(71.44f * degree) - (baseY_left-30+small_radius - small_radius * MathF.Sin(71.44f * degree) - 160) * 0.75f * agitation_left,
+                    baseX_left - small_radius * MathF.Cos(80.72f * degree), baseY_left-30+small_radius - small_radius * MathF.Sin(80.72f * degree) - (baseY_left-30+small_radius - small_radius * MathF.Sin(80.72f * degree) - 160) * 0.75f * agitation_left);
+                Draw.Line(baseX_left - small_radius * MathF.Cos(80.72f * degree), baseY_left-30+small_radius - small_radius * MathF.Sin(80.72f * degree) - (baseY_left-30+small_radius - small_radius * MathF.Sin(80.72f * degree) - 160) * 0.75f * agitation_left,
+                    baseX_left - small_radius * MathF.Cos(90 * degree), baseY_left-30+small_radius - small_radius * MathF.Sin(90 * degree) - (baseY_left-30+small_radius - small_radius * MathF.Sin(90 * degree) - 160) * 0.75f * agitation_left);
+                Draw.Line(baseX_left - small_radius * MathF.Cos(90 * degree), baseY_left-30+small_radius - small_radius * MathF.Sin(90 * degree) - (baseY_left-30+small_radius - small_radius * MathF.Sin(90 * degree) - 160) * 0.75f * agitation_left,
+                    baseX_left - small_radius * MathF.Cos(99.28f * degree), baseY_left-30+small_radius - small_radius * MathF.Sin(99.28f * degree) - (baseY_left-30+small_radius - small_radius * MathF.Sin(99.28f * degree) - 160) * 0.75f * agitation_left);
+                Draw.Line(baseX_left - small_radius * MathF.Cos(99.28f * degree), baseY_left-30+small_radius - small_radius * MathF.Sin(99.28f * degree) - (baseY_left-30+small_radius - small_radius * MathF.Sin(99.28f * degree) - 160) * 0.75f * agitation_left,
+                    baseX_left - small_radius * MathF.Cos(108.56f * degree), baseY_left-30+small_radius - small_radius * MathF.Sin(108.56f * degree) - (baseY_left-30+small_radius - small_radius * MathF.Sin(108.56f * degree) - 160) * 0.75f * agitation_left);
+                Draw.Line(baseX_left - small_radius * MathF.Cos(108.56f * degree), baseY_left-30+small_radius - small_radius * MathF.Sin(108.56f * degree) - (baseY_left-30+small_radius - small_radius * MathF.Sin(108.56f * degree) - 160) * 0.75f * agitation_left,
+                    baseX_left - small_radius * MathF.Cos(117.84f * degree), baseY_left-30+small_radius - small_radius * MathF.Sin(117.84f * degree) - (baseY_left-30+small_radius - small_radius * MathF.Sin(117.84f * degree) - 160) * 0.75f * agitation_left);
+                Draw.Line(baseX_left - small_radius * MathF.Cos(117.84f * degree), baseY_left-30+small_radius - small_radius * MathF.Sin(117.84f * degree) - (baseY_left-30+small_radius - small_radius * MathF.Sin(117.84f * degree) - 160) * 0.75f * agitation_left,
+                    baseX_left - small_radius * MathF.Cos(127.12f * degree), baseY_left-30+small_radius - small_radius * MathF.Sin(127.12f * degree) - (baseY_left-30+small_radius - small_radius * MathF.Sin(127.12f * degree) - 160) * 0.75f * agitation_left);
+                Draw.Line(baseX_left - small_radius * MathF.Cos(127.12f * degree), baseY_left-30+small_radius - small_radius * MathF.Sin(127.12f * degree) - (baseY_left-30+small_radius - small_radius * MathF.Sin(127.12f * degree) - 160) * 0.75f * agitation_left,
+                    baseX_left - small_radius * MathF.Cos(136.4f * degree), baseY_left-30+small_radius - small_radius * MathF.Sin(136.4f * degree));
             }
             //Bottom
-            //center point for top circle is (110, 93)
             //           X                                  Y                                 movement
             {
-                Draw.Line(110 + 97 * MathF.Cos(43.6f * degree), 93 + 97 * MathF.Sin(43.6f * degree),
-                    110 + 97 * MathF.Cos(52.88f * degree), 93 + 97 * MathF.Sin(52.88f * degree) - (93 + 97 * MathF.Sin(52.88f * degree) - 160) * 0.75f * agitation_left);
-                Draw.Line(110 + 97 * MathF.Cos(52.88f * degree), 93 + 97 * MathF.Sin(52.88f * degree) - (93 + 97 * MathF.Sin(52.88f * degree) - 160) * 0.75f * agitation_left,
-                    110 + 97 * MathF.Cos(62.16f * degree), 93 + 97 * MathF.Sin(62.16f * degree) - (93 + 97 * MathF.Sin(62.16f * degree) - 160) * 0.75f * agitation_left);
-                Draw.Line(110 + 97 * MathF.Cos(62.16f * degree), 93 + 97 * MathF.Sin(62.16f * degree) - (93 + 97 * MathF.Sin(62.16f * degree) - 160) * 0.75f * agitation_left,
-                    110 + 97 * MathF.Cos(71.44f * degree), 93 + 97 * MathF.Sin(71.44f * degree) - (93 + 97 * MathF.Sin(71.44f * degree) - 160) * 0.75f * agitation_left);
-                Draw.Line(110 + 97 * MathF.Cos(71.44f * degree), 93 + 97 * MathF.Sin(71.44f * degree) - (93 + 97 * MathF.Sin(71.44f * degree) - 160) * 0.75f * agitation_left,
-                    110 + 97 * MathF.Cos(80.72f * degree), 93 + 97 * MathF.Sin(80.72f * degree) - (93 + 97 * MathF.Sin(80.72f * degree) - 160) * 0.75f * agitation_left);
-                Draw.Line(110 + 97 * MathF.Cos(80.72f * degree), 93 + 97 * MathF.Sin(80.72f * degree) - (93 + 97 * MathF.Sin(80.72f * degree) - 160) * 0.75f * agitation_left,
-                    110 + 97 * MathF.Cos(90 * degree), 93 + 97 * MathF.Sin(90 * degree) - (93 + 97 * MathF.Sin(90 * degree) - 160) * 0.75f * agitation_left);
-                Draw.Line(110 + 97 * MathF.Cos(90 * degree), 93 + 97 * MathF.Sin(90 * degree) - (93 + 97 * MathF.Sin(90 * degree) - 160) * 0.75f * agitation_left,
-                    110 + 97 * MathF.Cos(99.28f * degree), 93 + 97 * MathF.Sin(99.28f * degree) - (93 + 97 * MathF.Sin(99.28f * degree) - 160) * 0.75f * agitation_left);
-                Draw.Line(110 + 97 * MathF.Cos(99.28f * degree), 93 + 97 * MathF.Sin(99.28f * degree) - (93 + 97 * MathF.Sin(99.28f * degree) - 160) * 0.75f * agitation_left,
-                    110 + 97 * MathF.Cos(108.56f * degree), 93 + 97 * MathF.Sin(108.56f * degree) - (93 + 97 * MathF.Sin(108.56f * degree) - 160) * 0.75f * agitation_left);
-                Draw.Line(110 + 97 * MathF.Cos(108.56f * degree), 93 + 97 * MathF.Sin(108.56f * degree) - (93 + 97 * MathF.Sin(108.56f * degree) - 160) * 0.75f * agitation_left,
-                    110 + 97 * MathF.Cos(117.84f * degree), 93 + 97 * MathF.Sin(117.84f * degree) - (93 + 97 * MathF.Sin(117.84f * degree) - 160) * 0.75f * agitation_left);
-                Draw.Line(110 + 97 * MathF.Cos(117.84f * degree), 93 + 97 * MathF.Sin(117.84f * degree) - (93 + 97 * MathF.Sin(117.84f * degree) - 160) * 0.75f * agitation_left,
-                    110 + 97 * MathF.Cos(127.12f * degree), 93 + 97 * MathF.Sin(127.12f * degree) - (93 + 97 * MathF.Sin(127.12f * degree) - 160) * 0.75f * agitation_left);
-                Draw.Line(110 + 97 * MathF.Cos(127.12f * degree), 93 + 97 * MathF.Sin(127.12f * degree) - (93 + 97 * MathF.Sin(127.12f * degree) - 160) * 0.75f * agitation_left,
-                    110 + 97 * MathF.Cos(136.4f * degree), 93 + 97 * MathF.Sin(136.4f * degree));
+                Draw.Line(baseX_left + small_radius * MathF.Cos(43.6f * degree), baseY_left+30-small_radius + small_radius * MathF.Sin(43.6f * degree),
+                    baseX_left + small_radius * MathF.Cos(52.88f * degree), baseY_left+30-small_radius + small_radius * MathF.Sin(52.88f * degree) - (baseY_left+30-small_radius + small_radius * MathF.Sin(52.88f * degree) - 160) * 0.75f * agitation_left);
+                Draw.Line(baseX_left + small_radius * MathF.Cos(52.88f * degree), baseY_left+30-small_radius + small_radius * MathF.Sin(52.88f * degree) - (baseY_left+30-small_radius + small_radius * MathF.Sin(52.88f * degree) - 160) * 0.75f * agitation_left,
+                    baseX_left + small_radius * MathF.Cos(62.16f * degree), baseY_left+30-small_radius + small_radius * MathF.Sin(62.16f * degree) - (baseY_left+30-small_radius + small_radius * MathF.Sin(62.16f * degree) - 160) * 0.75f * agitation_left);
+                Draw.Line(baseX_left + small_radius * MathF.Cos(62.16f * degree), baseY_left+30-small_radius + small_radius * MathF.Sin(62.16f * degree) - (baseY_left+30-small_radius + small_radius * MathF.Sin(62.16f * degree) - 160) * 0.75f * agitation_left,
+                    baseX_left + small_radius * MathF.Cos(71.44f * degree), baseY_left+30-small_radius + small_radius * MathF.Sin(71.44f * degree) - (baseY_left+30-small_radius + small_radius * MathF.Sin(71.44f * degree) - 160) * 0.75f * agitation_left);
+                Draw.Line(baseX_left + small_radius * MathF.Cos(71.44f * degree), baseY_left+30-small_radius + small_radius * MathF.Sin(71.44f * degree) - (baseY_left+30-small_radius + small_radius * MathF.Sin(71.44f * degree) - 160) * 0.75f * agitation_left,
+                    baseX_left + small_radius * MathF.Cos(80.72f * degree), baseY_left+30-small_radius + small_radius * MathF.Sin(80.72f * degree) - (baseY_left+30-small_radius + small_radius * MathF.Sin(80.72f * degree) - 160) * 0.75f * agitation_left);
+                Draw.Line(baseX_left + small_radius * MathF.Cos(80.72f * degree), baseY_left+30-small_radius + small_radius * MathF.Sin(80.72f * degree) - (baseY_left+30-small_radius + small_radius * MathF.Sin(80.72f * degree) - 160) * 0.75f * agitation_left,
+                    baseX_left + small_radius * MathF.Cos(90 * degree), baseY_left+30-small_radius + small_radius * MathF.Sin(90 * degree) - (baseY_left+30-small_radius + small_radius * MathF.Sin(90 * degree) - 160) * 0.75f * agitation_left);
+                Draw.Line(baseX_left + small_radius * MathF.Cos(90 * degree), baseY_left+30-small_radius + small_radius * MathF.Sin(90 * degree) - (baseY_left+30-small_radius + small_radius * MathF.Sin(90 * degree) - 160) * 0.75f * agitation_left,
+                    baseX_left + small_radius * MathF.Cos(99.28f * degree), baseY_left+30-small_radius + small_radius * MathF.Sin(99.28f * degree) - (baseY_left+30-small_radius + small_radius * MathF.Sin(99.28f * degree) - 160) * 0.75f * agitation_left);
+                Draw.Line(baseX_left + small_radius * MathF.Cos(99.28f * degree), baseY_left+30-small_radius + small_radius * MathF.Sin(99.28f * degree) - (baseY_left+30-small_radius + small_radius * MathF.Sin(99.28f * degree) - 160) * 0.75f * agitation_left,
+                    baseX_left + small_radius * MathF.Cos(108.56f * degree), baseY_left+30-small_radius + small_radius * MathF.Sin(108.56f * degree) - (baseY_left+30-small_radius + small_radius * MathF.Sin(108.56f * degree) - 160) * 0.75f * agitation_left);
+                Draw.Line(baseX_left + small_radius * MathF.Cos(108.56f * degree), baseY_left+30-small_radius + small_radius * MathF.Sin(108.56f * degree) - (baseY_left+30-small_radius + small_radius * MathF.Sin(108.56f * degree) - 160) * 0.75f * agitation_left,
+                    baseX_left + small_radius * MathF.Cos(117.84f * degree), baseY_left+30-small_radius + small_radius * MathF.Sin(117.84f * degree) - (baseY_left+30-small_radius + small_radius * MathF.Sin(117.84f * degree) - 160) * 0.75f * agitation_left);
+                Draw.Line(baseX_left + small_radius * MathF.Cos(117.84f * degree), baseY_left+30-small_radius + small_radius * MathF.Sin(117.84f * degree) - (baseY_left+30-small_radius + small_radius * MathF.Sin(117.84f * degree) - 160) * 0.75f * agitation_left,
+                    baseX_left + small_radius * MathF.Cos(127.12f * degree), baseY_left+30-small_radius + small_radius * MathF.Sin(127.12f * degree) - (baseY_left+30-small_radius + small_radius * MathF.Sin(127.12f * degree) - 160) * 0.75f * agitation_left);
+                Draw.Line(baseX_left + small_radius * MathF.Cos(127.12f * degree), baseY_left+30-small_radius + small_radius * MathF.Sin(127.12f * degree) - (baseY_left+30-small_radius + small_radius * MathF.Sin(127.12f * degree) - 160) * 0.75f * agitation_left,
+                    baseX_left + small_radius * MathF.Cos(136.4f * degree), baseY_left+30-small_radius + small_radius * MathF.Sin(136.4f * degree));
             }
             
             //-Eyelids-
             //Identical to the boundries, but thicker, and shifted up and down
             //hides the pupil and iris when outside of eye boundries
             Draw.SetLineColor(Color.OffWhite);
-            Draw.SetLineSize(38);
-            int shift = 20;
+            Draw.SetLineSize(58);
             //Top
             //           X                                     Y                                          movement
             {
-                Draw.Line(110 - 97 * MathF.Cos(43.6f * degree), 227 - shift - 97 * MathF.Sin(43.6f * degree),
-                    110 - 97 * MathF.Cos(52.88f * degree), 227 - shift - 97 * MathF.Sin(52.88f * degree));
-                Draw.Line(110 - 97 * MathF.Cos(52.88f * degree), 227 - shift - 97 * MathF.Sin(52.88f * degree),
-                    110 - 97 * MathF.Cos(62.16f * degree), 227 - shift - 97 * MathF.Sin(62.16f * degree));
-                Draw.Line(110 - 97 * MathF.Cos(62.16f * degree), 227 - shift - 97 * MathF.Sin(62.16f * degree),
-                    110 - 97 * MathF.Cos(71.44f * degree), 227 - shift - 97 * MathF.Sin(71.44f * degree));
-                Draw.Line(110 - 97 * MathF.Cos(71.44f * degree), 227 - shift - 97 * MathF.Sin(71.44f * degree),
-                    110 - 97 * MathF.Cos(80.72f * degree), 227 - shift - 97 * MathF.Sin(80.72f * degree));
-                Draw.Line(110 - 97 * MathF.Cos(80.72f * degree), 227 - shift - 97 * MathF.Sin(80.72f * degree),
-                    110 - 97 * MathF.Cos(90 * degree), 227 - shift - 97 * MathF.Sin(90 * degree));
-                Draw.Line(110 - 97 * MathF.Cos(90 * degree), 227 - shift - 97 * MathF.Sin(90 * degree),
-                    110 - 97 * MathF.Cos(99.28f * degree), 227 - shift - 97 * MathF.Sin(99.28f * degree));
-                Draw.Line(110 - 97 * MathF.Cos(99.28f * degree), 227 - shift - 97 * MathF.Sin(99.28f * degree),
-                    110 - 97 * MathF.Cos(108.56f * degree), 227 - shift - 97 * MathF.Sin(108.56f * degree));
-                Draw.Line(110 - 97 * MathF.Cos(108.56f * degree), 227 - shift - 97 * MathF.Sin(108.56f * degree),
-                    110 - 97 * MathF.Cos(117.84f * degree), 227 - shift - 97 * MathF.Sin(117.84f * degree));
-                Draw.Line(110 - 97 * MathF.Cos(117.84f * degree), 227 - shift - 97 * MathF.Sin(117.84f * degree),
-                    110 - 97 * MathF.Cos(127.12f * degree), 227 - shift - 97 * MathF.Sin(127.12f * degree));
-                Draw.Line(110 - 97 * MathF.Cos(127.12f * degree), 227 - shift - 97 * MathF.Sin(127.12f * degree),
-                    110 - 97 * MathF.Cos(136.4f * degree), 227 - shift - 97 * MathF.Sin(136.4f * degree));
+                Draw.Line(baseX_left - big_radius * MathF.Cos(start_angle_big), baseY_left-30+small_radius - big_radius * MathF.Sin(start_angle_big),
+                    baseX_left - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 1), baseY_left-30+small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 1) - (baseY_left-30+small_radius-small_radius * MathF.Sin(start_angle_small+delta_angle_small*1)-160)*0.75f*agitation_left);
+                Draw.Line(baseX_left - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 1), baseY_left-30+small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 1) - (baseY_left-30+small_radius-small_radius*MathF.Sin(start_angle_small+delta_angle_small*1)-160)*0.75f*agitation_left,
+                    baseX_left - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 2), baseY_left-30+small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 2) - (baseY_left-30+small_radius-small_radius*MathF.Sin(start_angle_small+delta_angle_small*2)-160)*0.75f*agitation_left);
+                Draw.Line(baseX_left - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 2), baseY_left-30+small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 2) - (baseY_left-30+small_radius-small_radius*MathF.Sin(start_angle_small+delta_angle_small*2)-160)*0.75f*agitation_left,
+                    baseX_left - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 3), baseY_left-30+small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 3) - (baseY_left-30+small_radius-small_radius*MathF.Sin(start_angle_small+delta_angle_small*3)-160)*0.75f*agitation_left);
+                Draw.Line(baseX_left - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 3), baseY_left-30+small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 3) - (baseY_left-30+small_radius-small_radius*MathF.Sin(start_angle_small+delta_angle_small*3)-160)*0.75f*agitation_left,
+                    baseX_left - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 4), baseY_left-30+small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 4) - (baseY_left-30+small_radius-small_radius*MathF.Sin(start_angle_small+delta_angle_small*4)-160)*0.75f*agitation_left);
+                Draw.Line(baseX_left - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 4), baseY_left-30+small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 4) - (baseY_left-30+small_radius-small_radius*MathF.Sin(start_angle_small+delta_angle_small*4)-160)*0.75f*agitation_left,
+                    baseX_left - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 5), baseY_left-30+small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 5) - (baseY_left-30+small_radius-small_radius*MathF.Sin(start_angle_small+delta_angle_small*5)-160)*0.75f*agitation_left);
+                Draw.Line(baseX_left - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 5), baseY_left-30+small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 5) - (baseY_left-30+small_radius-small_radius*MathF.Sin(start_angle_small+delta_angle_small*5)-160)*0.75f*agitation_left,
+                    baseX_left - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 6), baseY_left-30+small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 6) - (baseY_left-30+small_radius-small_radius*MathF.Sin(start_angle_small+delta_angle_small*6)-160)*0.75f*agitation_left);
+                Draw.Line(baseX_left - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 6), baseY_left-30+small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 6) - (baseY_left-30+small_radius-small_radius*MathF.Sin(start_angle_small+delta_angle_small*6)-160)*0.75f*agitation_left,
+                    baseX_left - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 7), baseY_left-30+small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 7) - (baseY_left-30+small_radius-small_radius*MathF.Sin(start_angle_small+delta_angle_small*7)-160)*0.75f*agitation_left);
+                Draw.Line(baseX_left - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 7), baseY_left-30+small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 7) - (baseY_left-30+small_radius-small_radius*MathF.Sin(start_angle_small+delta_angle_small*7)-160)*0.75f*agitation_left,
+                    baseX_left - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 8), baseY_left-30+small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 8) - (baseY_left-30+small_radius-small_radius*MathF.Sin(start_angle_small+delta_angle_small*8)-160)*0.75f*agitation_left);
+                Draw.Line(baseX_left - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 8), baseY_left-30+small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 8) - (baseY_left-30+small_radius-small_radius*MathF.Sin(start_angle_small+delta_angle_small*8)-160)*0.75f*agitation_left,
+                    baseX_left - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 9), baseY_left-30+small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 9) - (baseY_left-30+small_radius-small_radius*MathF.Sin(start_angle_small+delta_angle_small*9)-160)*0.75f*agitation_left);
+                Draw.Line(baseX_left - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 9), baseY_left-30+small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 9) - (baseY_left-30+small_radius-small_radius*MathF.Sin(start_angle_small+delta_angle_small*9)-160)*0.75f*agitation_left,
+                    baseX_left - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 10), baseY_left-30+small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 10));
             }
             //Bottom
             //           X                                     Y                                          movement
             {
-                Draw.Line(110 + 97 * MathF.Cos(43.6f * degree), 93 + shift + 97 * MathF.Sin(43.6f * degree),
-                    110 + 97 * MathF.Cos(52.88f * degree), 93 + shift + 97 * MathF.Sin(52.88f * degree));
-                Draw.Line(110 + 97 * MathF.Cos(52.88f * degree), 93 + shift + 97 * MathF.Sin(52.88f * degree),
-                    110 + 97 * MathF.Cos(62.16f * degree), 93 + shift + 97 * MathF.Sin(62.16f * degree));
-                Draw.Line(110 + 97 * MathF.Cos(62.16f * degree), 93 + shift + 97 * MathF.Sin(62.16f * degree),
-                    110 + 97 * MathF.Cos(71.44f * degree), 93 + shift + 97 * MathF.Sin(71.44f * degree));
-                Draw.Line(110 + 97 * MathF.Cos(71.44f * degree), 93 + shift + 97 * MathF.Sin(71.44f * degree),
-                    110 + 97 * MathF.Cos(80.72f * degree), 93 + shift + 97 * MathF.Sin(80.72f * degree));
-                Draw.Line(110 + 97 * MathF.Cos(80.72f * degree), 93 + shift + 97 * MathF.Sin(80.72f * degree),
-                    110 + 97 * MathF.Cos(90 * degree), 93 + shift + 97 * MathF.Sin(90 * degree));
-                Draw.Line(110 + 97 * MathF.Cos(90 * degree), 93 + shift + 97 * MathF.Sin(90 * degree),
-                    110 + 97 * MathF.Cos(99.28f * degree), 93 + shift + 97 * MathF.Sin(99.28f * degree));
-                Draw.Line(110 + 97 * MathF.Cos(99.28f * degree), 93 + shift + 97 * MathF.Sin(99.28f * degree),
-                    110 + 97 * MathF.Cos(108.56f * degree), 93 + shift + 97 * MathF.Sin(108.56f * degree));
-                Draw.Line(110 + 97 * MathF.Cos(108.56f * degree), 93 + shift + 97 * MathF.Sin(108.56f * degree),
-                    110 + 97 * MathF.Cos(117.84f * degree), 93 + shift + 97 * MathF.Sin(117.84f * degree));
-                Draw.Line(110 + 97 * MathF.Cos(117.84f * degree), 93 + shift + 97 * MathF.Sin(117.84f * degree),
-                    110 + 97 * MathF.Cos(127.12f * degree), 93 + shift + 97 * MathF.Sin(127.12f * degree));
-                Draw.Line(110 + 97 * MathF.Cos(127.12f * degree), 93 + shift + 97 * MathF.Sin(127.12f * degree),
-                    110 + 97 * MathF.Cos(136.4f * degree), 93 + shift + 97 * MathF.Sin(136.4f * degree));
+                Draw.Line(baseX_left + big_radius * MathF.Cos(start_angle_big), baseY_left+30-small_radius + big_radius * MathF.Sin(start_angle_big),
+                    baseX_left + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 1), baseY_left+30-small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 1) - (baseY_left+30-small_radius+small_radius * MathF.Sin(start_angle_small+delta_angle_small*1)-160)*0.75f*agitation_left);
+                Draw.Line(baseX_left + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 1), baseY_left+30-small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 1) - (baseY_left+30-small_radius+small_radius * MathF.Sin(start_angle_small+delta_angle_small*1)-160)*0.75f*agitation_left,
+                    baseX_left + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 2), baseY_left+30-small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 2) - (baseY_left+30-small_radius+small_radius * MathF.Sin(start_angle_small+delta_angle_small*2)-160)*0.75f*agitation_left);
+                Draw.Line(baseX_left + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 2), baseY_left+30-small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 2) - (baseY_left+30-small_radius+small_radius * MathF.Sin(start_angle_small+delta_angle_small*2)-160)*0.75f*agitation_left,
+                    baseX_left + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 3), baseY_left+30-small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 3) - (baseY_left+30-small_radius+small_radius * MathF.Sin(start_angle_small+delta_angle_small*3)-160)*0.75f*agitation_left);
+                Draw.Line(baseX_left + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 3), baseY_left+30-small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 3) - (baseY_left+30-small_radius+small_radius * MathF.Sin(start_angle_small+delta_angle_small*3)-160)*0.75f*agitation_left,
+                    baseX_left + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 4), baseY_left+30-small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 4) - (baseY_left+30-small_radius+small_radius * MathF.Sin(start_angle_small+delta_angle_small*4)-160)*0.75f*agitation_left);
+                Draw.Line(baseX_left + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 4), baseY_left+30-small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 4) - (baseY_left+30-small_radius+small_radius * MathF.Sin(start_angle_small+delta_angle_small*4)-160)*0.75f*agitation_left,
+                    baseX_left + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 5), baseY_left+30-small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 5) - (baseY_left+30-small_radius+small_radius * MathF.Sin(start_angle_small+delta_angle_small*5)-160)*0.75f*agitation_left);
+                Draw.Line(baseX_left + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 5), baseY_left+30-small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 5) - (baseY_left+30-small_radius+small_radius * MathF.Sin(start_angle_small+delta_angle_small*5)-160)*0.75f*agitation_left,
+                    baseX_left + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 6), baseY_left+30-small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 6) - (baseY_left+30-small_radius+small_radius * MathF.Sin(start_angle_small+delta_angle_small*6)-160)*0.75f*agitation_left);
+                Draw.Line(baseX_left + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 6), baseY_left+30-small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 6) - (baseY_left+30-small_radius+small_radius * MathF.Sin(start_angle_small+delta_angle_small*6)-160)*0.75f*agitation_left,
+                    baseX_left + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 7), baseY_left+30-small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 7) - (baseY_left+30-small_radius+small_radius * MathF.Sin(start_angle_small+delta_angle_small*7)-160)*0.75f*agitation_left);
+                Draw.Line(baseX_left + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 7), baseY_left+30-small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 7) - (baseY_left+30-small_radius+small_radius * MathF.Sin(start_angle_small+delta_angle_small*7)-160)*0.75f*agitation_left,
+                    baseX_left + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 8), baseY_left+30-small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 8) - (baseY_left+30-small_radius+small_radius * MathF.Sin(start_angle_small+delta_angle_small*8)-160)*0.75f*agitation_left);
+                Draw.Line(baseX_left + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 8), baseY_left+30-small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 8) - (baseY_left+30-small_radius+small_radius * MathF.Sin(start_angle_small+delta_angle_small*8)-160)*0.75f*agitation_left,
+                    baseX_left + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 9), baseY_left+30-small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 9) - (baseY_left+30-small_radius+small_radius * MathF.Sin(start_angle_small+delta_angle_small*9)-160)*0.75f*agitation_left);
+                Draw.Line(baseX_left + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 9), baseY_left+30-small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 9) - (baseY_left+30-small_radius+small_radius * MathF.Sin(start_angle_small+delta_angle_small*9)-160)*0.75f*agitation_left,
+                    baseX_left + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 10), baseY_left+30-small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 10));
             }
         }
     }
