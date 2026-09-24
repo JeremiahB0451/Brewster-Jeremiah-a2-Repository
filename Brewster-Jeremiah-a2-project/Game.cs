@@ -123,6 +123,56 @@ namespace MohawkGame2D
                 110 + 97*MathF.Cos(127.12f*degree), 93 + 97*MathF.Sin(127.12f*degree));
             Draw.Line(110 + 97*MathF.Cos(127.12f*degree), 93 + 97*MathF.Sin(127.12f*degree),
                 110 + 97*MathF.Cos(136.4f*degree), 93 + 97*MathF.Sin(136.4f*degree));
+
+            //-Eyelids-
+            //Identical to the boundries, but thicker, and shifted up and down
+            //hides the pupil and iris when outside of eye boundries
+            Draw.SetLineColor(Color.OffWhite);
+            Draw.SetLineSize(38);
+            int shift = 20;
+            //Top
+            Draw.Line(110 - 97 * MathF.Cos(43.6f * degree), 227-shift - 97 * MathF.Sin(43.6f * degree),
+                110 - 97 * MathF.Cos(52.88f * degree), 227-shift - 97 * MathF.Sin(52.88f * degree));
+            Draw.Line(110 - 97 * MathF.Cos(52.88f * degree), 227-shift - 97 * MathF.Sin(52.88f * degree),
+                110 - 97 * MathF.Cos(62.16f * degree), 227-shift - 97 * MathF.Sin(62.16f * degree));
+            Draw.Line(110 - 97 * MathF.Cos(62.16f * degree), 227-shift - 97 * MathF.Sin(62.16f * degree),
+                110 - 97 * MathF.Cos(71.44f * degree), 227-shift - 97 * MathF.Sin(71.44f * degree));
+            Draw.Line(110 - 97 * MathF.Cos(71.44f * degree), 227-shift - 97 * MathF.Sin(71.44f * degree),
+                110 - 97 * MathF.Cos(80.72f * degree), 227-shift - 97 * MathF.Sin(80.72f * degree));
+            Draw.Line(110 - 97 * MathF.Cos(80.72f * degree), 227-shift - 97 * MathF.Sin(80.72f * degree),
+                110 - 97 * MathF.Cos(90 * degree), 227-shift - 97 * MathF.Sin(90 * degree));
+            Draw.Line(110 - 97 * MathF.Cos(90 * degree), 227-shift - 97 * MathF.Sin(90 * degree),
+                110 - 97 * MathF.Cos(99.28f * degree), 227-shift - 97 * MathF.Sin(99.28f * degree));
+            Draw.Line(110 - 97 * MathF.Cos(99.28f * degree), 227-shift - 97 * MathF.Sin(99.28f * degree),
+                110 - 97 * MathF.Cos(108.56f * degree), 227-shift - 97 * MathF.Sin(108.56f * degree));
+            Draw.Line(110 - 97 * MathF.Cos(108.56f * degree), 227-shift - 97 * MathF.Sin(108.56f * degree),
+                110 - 97 * MathF.Cos(117.84f * degree), 227-shift - 97 * MathF.Sin(117.84f * degree));
+            Draw.Line(110 - 97 * MathF.Cos(117.84f * degree), 227-shift - 97 * MathF.Sin(117.84f * degree),
+                110 - 97 * MathF.Cos(127.12f * degree), 227-shift - 97 * MathF.Sin(127.12f * degree));
+            Draw.Line(110 - 97 * MathF.Cos(127.12f * degree), 227-shift - 97 * MathF.Sin(127.12f * degree),
+                110 - 97 * MathF.Cos(136.4f * degree), 227-shift - 97 * MathF.Sin(136.4f * degree));
+            //Bottom
+            Draw.Line(110 + 97 * MathF.Cos(43.6f * degree), 93+shift + 97 * MathF.Sin(43.6f * degree),
+                110 + 97 * MathF.Cos(52.88f * degree), 93+shift + 97 * MathF.Sin(52.88f * degree));
+            Draw.Line(110 + 97 * MathF.Cos(52.88f * degree), 93+shift + 97 * MathF.Sin(52.88f * degree),
+                110 + 97 * MathF.Cos(62.16f * degree), 93+shift + 97 * MathF.Sin(62.16f * degree));
+            Draw.Line(110 + 97 * MathF.Cos(62.16f * degree), 93+shift + 97 * MathF.Sin(62.16f * degree),
+                110 + 97 * MathF.Cos(71.44f * degree), 93+shift + 97 * MathF.Sin(71.44f * degree));
+            Draw.Line(110 + 97 * MathF.Cos(71.44f * degree), 93+shift + 97 * MathF.Sin(71.44f * degree),
+                110 + 97 * MathF.Cos(80.72f * degree), 93+shift + 97 * MathF.Sin(80.72f * degree));
+            Draw.Line(110 + 97 * MathF.Cos(80.72f * degree), 93+shift + 97 * MathF.Sin(80.72f * degree),
+                110 + 97 * MathF.Cos(90 * degree), 93+shift + 97 * MathF.Sin(90 * degree));
+            Draw.Line(110 + 97 * MathF.Cos(90 * degree), 93+shift + 97 * MathF.Sin(90 * degree),
+                110 + 97 * MathF.Cos(99.28f * degree), 93+shift + 97 * MathF.Sin(99.28f * degree));
+            Draw.Line(110 + 97 * MathF.Cos(99.28f * degree), 93+shift + 97 * MathF.Sin(99.28f * degree),
+                110 + 97 * MathF.Cos(108.56f * degree), 93+shift + 97 * MathF.Sin(108.56f * degree));
+            Draw.Line(110 + 97 * MathF.Cos(108.56f * degree), 93+shift + 97 * MathF.Sin(108.56f * degree),
+                110 + 97 * MathF.Cos(117.84f * degree), 93+shift + 97 * MathF.Sin(117.84f * degree));
+            Draw.Line(110 + 97 * MathF.Cos(117.84f * degree), 93+shift + 97 * MathF.Sin(117.84f * degree),
+                110 + 97 * MathF.Cos(127.12f * degree), 93+shift + 97 * MathF.Sin(127.12f * degree));
+            Draw.Line(110 + 97 * MathF.Cos(127.12f * degree), 93+shift + 97 * MathF.Sin(127.12f * degree),
+                110 + 97 * MathF.Cos(136.4f * degree), 93+shift + 97 * MathF.Sin(136.4f * degree));
+
         }
     }
 
