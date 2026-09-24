@@ -95,6 +95,7 @@ namespace MohawkGame2D
             //Top
             //Use sin and cos to draw lines mapped onto a circle
             //center point for top circle is (110, 227); rotation per point is 9.28 degrees
+            //           X                                  Y                                 movement
             Draw.Line(110 - 97*MathF.Cos(43.6f*degree), 227 - 97*MathF.Sin(43.6f*degree),
                 110 - 97*MathF.Cos(52.88f*degree), 227 - 97*MathF.Sin(52.88f*degree) - (227-97*MathF.Sin(52.88f*degree)-160)*0.75f*agitation_left);
             Draw.Line(110 - 97*MathF.Cos(52.88f*degree), 227 - 97*MathF.Sin(52.88f*degree) - (227-97*MathF.Sin(52.88f*degree)-160)*0.75f*agitation_left,
@@ -117,6 +118,7 @@ namespace MohawkGame2D
                 110 - 97*MathF.Cos(136.4f*degree), 227 - 97*MathF.Sin(136.4f*degree));
             //Bottom
             //center point for top circle is (110, 93)
+            //           X                                  Y                                 movement
             Draw.Line(110 + 97*MathF.Cos(43.6f*degree), 93 + 97*MathF.Sin(43.6f*degree),
                 110 + 97*MathF.Cos(52.88f*degree), 93 + 97*MathF.Sin(52.88f*degree) - (93+97*MathF.Sin(52.88f*degree)-160)*0.75f*agitation_left);
             Draw.Line(110 + 97*MathF.Cos(52.88f*degree), 93 + 97*MathF.Sin(52.88f*degree) - (93+97*MathF.Sin(52.88f*degree)-160)*0.75f*agitation_left,
@@ -145,6 +147,7 @@ namespace MohawkGame2D
             Draw.SetLineSize(2);
             int shift = 2;
             //Top
+            //           X                                     Y                                          movement
             Draw.Line(110 - 97 * MathF.Cos(43.6f * degree), 227-shift - 97 * MathF.Sin(43.6f * degree),
                 110 - 97 * MathF.Cos(52.88f * degree), 227-shift - 97 * MathF.Sin(52.88f * degree));
             Draw.Line(110 - 97 * MathF.Cos(52.88f * degree), 227-shift - 97 * MathF.Sin(52.88f * degree),
@@ -166,6 +169,7 @@ namespace MohawkGame2D
             Draw.Line(110 - 97 * MathF.Cos(127.12f * degree), 227-shift - 97 * MathF.Sin(127.12f * degree),
                 110 - 97 * MathF.Cos(136.4f * degree), 227-shift - 97 * MathF.Sin(136.4f * degree));
             //Bottom
+            //           X                                     Y                                          movement
             Draw.Line(110 + 97 * MathF.Cos(43.6f * degree), 93+shift + 97 * MathF.Sin(43.6f * degree),
                 110 + 97 * MathF.Cos(52.88f * degree), 93+shift + 97 * MathF.Sin(52.88f * degree));
             Draw.Line(110 + 97 * MathF.Cos(52.88f * degree), 93+shift + 97 * MathF.Sin(52.88f * degree),
