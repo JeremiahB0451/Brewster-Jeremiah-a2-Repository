@@ -15,6 +15,9 @@ namespace MohawkGame2D
         float baseX_left = 110;
         float baseY_left = 160;
         float agitation_left = 0;
+        float baseX_right = 290;
+        float baseY_right = 160;
+        float agitation_right = 0;
         float degree = MathF.PI / 180;
         float small_radius = 97 + 2/3;
         float big_radius = 127 + 2/3;
@@ -50,6 +53,18 @@ namespace MohawkGame2D
             //Cap agitation to 1
             if (agitation_left > 1) {
                 agitation_left = 1;
+            }
+            //Decrement agitation avery frame
+            if (agitation_right > 0) {
+                agitation_right -= 0.0025f;
+            }
+            //Clicking logic for right eye; hitbox is the rectangle bounding the eye
+            if (Input.GetMouseX() > 220 && Input.GetMouseX() < 360 && Input.GetMouseY() > 130 && Input.GetMouseY() < 190 && Input.IsMouseButtonPressed(MouseButton.Left)) {
+                agitation_right += 0.2f;
+            }
+            //Cap agitation to 1
+            if (agitation_right > 1) {
+                agitation_right = 1;
             }
 
             ////Guiding circles/dots for left eye
@@ -156,8 +171,6 @@ namespace MohawkGame2D
             //Top
             //           X                                     Y                                          movement
             {
-                Draw.Line(baseX_left - big_radius * MathF.Cos(start_angle_big), baseY_left-30+small_radius - big_radius * MathF.Sin(start_angle_big),
-                    baseX_left - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 1), baseY_left-30+small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 1) - (baseY_left-30+small_radius-small_radius * MathF.Sin(start_angle_small+delta_angle_small*1)-160)*0.75f*agitation_left);
                 Draw.Line(baseX_left - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 1), baseY_left-30+small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 1) - (baseY_left-30+small_radius-small_radius*MathF.Sin(start_angle_small+delta_angle_small*1)-160)*0.75f*agitation_left,
                     baseX_left - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 2), baseY_left-30+small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 2) - (baseY_left-30+small_radius-small_radius*MathF.Sin(start_angle_small+delta_angle_small*2)-160)*0.75f*agitation_left);
                 Draw.Line(baseX_left - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 2), baseY_left-30+small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 2) - (baseY_left-30+small_radius-small_radius*MathF.Sin(start_angle_small+delta_angle_small*2)-160)*0.75f*agitation_left,
@@ -174,14 +187,10 @@ namespace MohawkGame2D
                     baseX_left - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 8), baseY_left-30+small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 8) - (baseY_left-30+small_radius-small_radius*MathF.Sin(start_angle_small+delta_angle_small*8)-160)*0.75f*agitation_left);
                 Draw.Line(baseX_left - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 8), baseY_left-30+small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 8) - (baseY_left-30+small_radius-small_radius*MathF.Sin(start_angle_small+delta_angle_small*8)-160)*0.75f*agitation_left,
                     baseX_left - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 9), baseY_left-30+small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 9) - (baseY_left-30+small_radius-small_radius*MathF.Sin(start_angle_small+delta_angle_small*9)-160)*0.75f*agitation_left);
-                Draw.Line(baseX_left - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 9), baseY_left-30+small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 9) - (baseY_left-30+small_radius-small_radius*MathF.Sin(start_angle_small+delta_angle_small*9)-160)*0.75f*agitation_left,
-                    baseX_left - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 10), baseY_left-30+small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 10));
             }
             //Bottom
             //           X                                     Y                                          movement
             {
-                Draw.Line(baseX_left + big_radius * MathF.Cos(start_angle_big), baseY_left+30-small_radius + big_radius * MathF.Sin(start_angle_big),
-                    baseX_left + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 1), baseY_left+30-small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 1) - (baseY_left+30-small_radius+small_radius * MathF.Sin(start_angle_small+delta_angle_small*1)-160)*0.75f*agitation_left);
                 Draw.Line(baseX_left + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 1), baseY_left+30-small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 1) - (baseY_left+30-small_radius+small_radius * MathF.Sin(start_angle_small+delta_angle_small*1)-160)*0.75f*agitation_left,
                     baseX_left + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 2), baseY_left+30-small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 2) - (baseY_left+30-small_radius+small_radius * MathF.Sin(start_angle_small+delta_angle_small*2)-160)*0.75f*agitation_left);
                 Draw.Line(baseX_left + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 2), baseY_left+30-small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 2) - (baseY_left+30-small_radius+small_radius * MathF.Sin(start_angle_small+delta_angle_small*2)-160)*0.75f*agitation_left,
@@ -198,8 +207,136 @@ namespace MohawkGame2D
                     baseX_left + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 8), baseY_left+30-small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 8) - (baseY_left+30-small_radius+small_radius * MathF.Sin(start_angle_small+delta_angle_small*8)-160)*0.75f*agitation_left);
                 Draw.Line(baseX_left + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 8), baseY_left+30-small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 8) - (baseY_left+30-small_radius+small_radius * MathF.Sin(start_angle_small+delta_angle_small*8)-160)*0.75f*agitation_left,
                     baseX_left + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 9), baseY_left+30-small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 9) - (baseY_left+30-small_radius+small_radius * MathF.Sin(start_angle_small+delta_angle_small*9)-160)*0.75f*agitation_left);
-                Draw.Line(baseX_left + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 9), baseY_left+30-small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 9) - (baseY_left+30-small_radius+small_radius * MathF.Sin(start_angle_small+delta_angle_small*9)-160)*0.75f*agitation_left,
-                    baseX_left + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 10), baseY_left+30-small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 10));
+            }
+
+            //----RIGHT EYE----
+            //-Eye white-
+            Draw.SetLineSize(0);
+            Draw.SetFillColor(255, (int)(255 * (1 - agitation_right)), (int)(255 * (1 - agitation_right)));
+            Draw.Rectangle(220, 130, 140, 60);
+
+            //-Pupil and iris-
+            //Calcuate amount to shift; based on square root of distace
+            Xdiff = Input.GetMouseX() - baseX_right;
+            Ydiff = Input.GetMouseY() - baseY_right;
+            displacement = MathF.Sqrt(MathF.Sqrt(MathF.Pow(Xdiff, 2) + MathF.Pow(Ydiff, 2)));
+            //Calcuate the direction to shift with sin and cos
+            angle = MathF.Atan(Xdiff / MathF.Abs(Ydiff));
+            Xdiff = MathF.Sin(angle);
+            Ydiff = MathF.Cos(angle) * MathF.Sign(Ydiff);
+
+            Draw.SetLineSize(0);
+            Draw.SetFillColor("#64C4FF");
+            Draw.Circle(baseX_right + Xdiff * displacement, baseY_right + Ydiff * displacement, 30);
+            Draw.SetFillColor(Color.Black);
+            Draw.Circle(baseX_right + Xdiff * displacement * 1.3f, baseY_right + Ydiff * displacement * 1.3f, 15);
+
+            ////Guide for testing the eye movement
+            //Draw.SetFillColor(Color.Red);
+            //Draw.Circle(baseX_right, baseY_right, 5);
+            //Draw.SetLineColor(Color.Red);
+            //Draw.SetLineSize(1);
+            //Draw.Line(baseX_right, baseY_right, Input.GetMouseX(), Input.GetMouseY());
+            //Draw.SetFillColor(Color.Green);
+            //Draw.Circle(baseX_right + Xdiff*displacement, baseY_right + Ydiff*displacement, 2);
+
+            //-Eye boundries-
+            Draw.SetLineColor(Color.Black);
+            Draw.SetLineSize(1);
+            //Top
+            //Use sin and cos to draw lines mapped onto a circle
+            //           X                                  Y                                 movement
+            {
+                Draw.Line(baseX_right - small_radius * MathF.Cos(43.6f * degree), baseY_right - 30 + small_radius - small_radius * MathF.Sin(43.6f * degree),
+                    baseX_right - small_radius * MathF.Cos(52.88f * degree), baseY_right - 30 + small_radius - small_radius * MathF.Sin(52.88f * degree) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(52.88f * degree) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right - small_radius * MathF.Cos(52.88f * degree), baseY_right - 30 + small_radius - small_radius * MathF.Sin(52.88f * degree) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(52.88f * degree) - 160) * 0.75f * agitation_right,
+                    baseX_right - small_radius * MathF.Cos(62.16f * degree), baseY_right - 30 + small_radius - small_radius * MathF.Sin(62.16f * degree) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(62.16f * degree) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right - small_radius * MathF.Cos(62.16f * degree), baseY_right - 30 + small_radius - small_radius * MathF.Sin(62.16f * degree) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(62.16f * degree) - 160) * 0.75f * agitation_right,
+                    baseX_right - small_radius * MathF.Cos(71.44f * degree), baseY_right - 30 + small_radius - small_radius * MathF.Sin(71.44f * degree) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(71.44f * degree) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right - small_radius * MathF.Cos(71.44f * degree), baseY_right - 30 + small_radius - small_radius * MathF.Sin(71.44f * degree) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(71.44f * degree) - 160) * 0.75f * agitation_right,
+                    baseX_right - small_radius * MathF.Cos(80.72f * degree), baseY_right - 30 + small_radius - small_radius * MathF.Sin(80.72f * degree) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(80.72f * degree) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right - small_radius * MathF.Cos(80.72f * degree), baseY_right - 30 + small_radius - small_radius * MathF.Sin(80.72f * degree) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(80.72f * degree) - 160) * 0.75f * agitation_right,
+                    baseX_right - small_radius * MathF.Cos(90 * degree), baseY_right - 30 + small_radius - small_radius * MathF.Sin(90 * degree) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(90 * degree) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right - small_radius * MathF.Cos(90 * degree), baseY_right - 30 + small_radius - small_radius * MathF.Sin(90 * degree) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(90 * degree) - 160) * 0.75f * agitation_right,
+                    baseX_right - small_radius * MathF.Cos(99.28f * degree), baseY_right - 30 + small_radius - small_radius * MathF.Sin(99.28f * degree) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(99.28f * degree) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right - small_radius * MathF.Cos(99.28f * degree), baseY_right - 30 + small_radius - small_radius * MathF.Sin(99.28f * degree) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(99.28f * degree) - 160) * 0.75f * agitation_right,
+                    baseX_right - small_radius * MathF.Cos(108.56f * degree), baseY_right - 30 + small_radius - small_radius * MathF.Sin(108.56f * degree) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(108.56f * degree) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right - small_radius * MathF.Cos(108.56f * degree), baseY_right - 30 + small_radius - small_radius * MathF.Sin(108.56f * degree) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(108.56f * degree) - 160) * 0.75f * agitation_right,
+                    baseX_right - small_radius * MathF.Cos(117.84f * degree), baseY_right - 30 + small_radius - small_radius * MathF.Sin(117.84f * degree) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(117.84f * degree) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right - small_radius * MathF.Cos(117.84f * degree), baseY_right - 30 + small_radius - small_radius * MathF.Sin(117.84f * degree) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(117.84f * degree) - 160) * 0.75f * agitation_right,
+                    baseX_right - small_radius * MathF.Cos(127.12f * degree), baseY_right - 30 + small_radius - small_radius * MathF.Sin(127.12f * degree) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(127.12f * degree) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right - small_radius * MathF.Cos(127.12f * degree), baseY_right - 30 + small_radius - small_radius * MathF.Sin(127.12f * degree) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(127.12f * degree) - 160) * 0.75f * agitation_right,
+                    baseX_right - small_radius * MathF.Cos(136.4f * degree), baseY_right - 30 + small_radius - small_radius * MathF.Sin(136.4f * degree));
+            }
+            //Bottom
+            //           X                                  Y                                 movement
+            {
+                Draw.Line(baseX_right + small_radius * MathF.Cos(43.6f * degree), baseY_right + 30 - small_radius + small_radius * MathF.Sin(43.6f * degree),
+                    baseX_right + small_radius * MathF.Cos(52.88f * degree), baseY_right + 30 - small_radius + small_radius * MathF.Sin(52.88f * degree) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(52.88f * degree) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right + small_radius * MathF.Cos(52.88f * degree), baseY_right + 30 - small_radius + small_radius * MathF.Sin(52.88f * degree) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(52.88f * degree) - 160) * 0.75f * agitation_right,
+                    baseX_right + small_radius * MathF.Cos(62.16f * degree), baseY_right + 30 - small_radius + small_radius * MathF.Sin(62.16f * degree) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(62.16f * degree) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right + small_radius * MathF.Cos(62.16f * degree), baseY_right + 30 - small_radius + small_radius * MathF.Sin(62.16f * degree) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(62.16f * degree) - 160) * 0.75f * agitation_right,
+                    baseX_right + small_radius * MathF.Cos(71.44f * degree), baseY_right + 30 - small_radius + small_radius * MathF.Sin(71.44f * degree) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(71.44f * degree) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right + small_radius * MathF.Cos(71.44f * degree), baseY_right + 30 - small_radius + small_radius * MathF.Sin(71.44f * degree) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(71.44f * degree) - 160) * 0.75f * agitation_right,
+                    baseX_right + small_radius * MathF.Cos(80.72f * degree), baseY_right + 30 - small_radius + small_radius * MathF.Sin(80.72f * degree) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(80.72f * degree) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right + small_radius * MathF.Cos(80.72f * degree), baseY_right + 30 - small_radius + small_radius * MathF.Sin(80.72f * degree) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(80.72f * degree) - 160) * 0.75f * agitation_right,
+                    baseX_right + small_radius * MathF.Cos(90 * degree), baseY_right + 30 - small_radius + small_radius * MathF.Sin(90 * degree) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(90 * degree) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right + small_radius * MathF.Cos(90 * degree), baseY_right + 30 - small_radius + small_radius * MathF.Sin(90 * degree) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(90 * degree) - 160) * 0.75f * agitation_right,
+                    baseX_right + small_radius * MathF.Cos(99.28f * degree), baseY_right + 30 - small_radius + small_radius * MathF.Sin(99.28f * degree) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(99.28f * degree) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right + small_radius * MathF.Cos(99.28f * degree), baseY_right + 30 - small_radius + small_radius * MathF.Sin(99.28f * degree) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(99.28f * degree) - 160) * 0.75f * agitation_right,
+                    baseX_right + small_radius * MathF.Cos(108.56f * degree), baseY_right + 30 - small_radius + small_radius * MathF.Sin(108.56f * degree) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(108.56f * degree) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right + small_radius * MathF.Cos(108.56f * degree), baseY_right + 30 - small_radius + small_radius * MathF.Sin(108.56f * degree) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(108.56f * degree) - 160) * 0.75f * agitation_right,
+                    baseX_right + small_radius * MathF.Cos(117.84f * degree), baseY_right + 30 - small_radius + small_radius * MathF.Sin(117.84f * degree) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(117.84f * degree) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right + small_radius * MathF.Cos(117.84f * degree), baseY_right + 30 - small_radius + small_radius * MathF.Sin(117.84f * degree) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(117.84f * degree) - 160) * 0.75f * agitation_right,
+                    baseX_right + small_radius * MathF.Cos(127.12f * degree), baseY_right + 30 - small_radius + small_radius * MathF.Sin(127.12f * degree) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(127.12f * degree) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right + small_radius * MathF.Cos(127.12f * degree), baseY_right + 30 - small_radius + small_radius * MathF.Sin(127.12f * degree) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(127.12f * degree) - 160) * 0.75f * agitation_right,
+                    baseX_right + small_radius * MathF.Cos(136.4f * degree), baseY_right + 30 - small_radius + small_radius * MathF.Sin(136.4f * degree));
+            }
+
+            //-Eyelids-
+            //Identical to the boundries, but thicker, and shifted up and down
+            //hides the pupil and iris when outside of eye boundries
+            Draw.SetLineColor(Color.OffWhite);
+            Draw.SetLineSize(58);
+            //Top
+            //           X                                     Y                                          movement
+            {
+                Draw.Line(baseX_right - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 1), baseY_right - 30 + small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 1) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(start_angle_small + delta_angle_small * 1) - 160) * 0.75f * agitation_right,
+                    baseX_right - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 2), baseY_right - 30 + small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 2) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(start_angle_small + delta_angle_small * 2) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 2), baseY_right - 30 + small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 2) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(start_angle_small + delta_angle_small * 2) - 160) * 0.75f * agitation_right,
+                    baseX_right - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 3), baseY_right - 30 + small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 3) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(start_angle_small + delta_angle_small * 3) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 3), baseY_right - 30 + small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 3) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(start_angle_small + delta_angle_small * 3) - 160) * 0.75f * agitation_right,
+                    baseX_right - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 4), baseY_right - 30 + small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 4) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(start_angle_small + delta_angle_small * 4) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 4), baseY_right - 30 + small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 4) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(start_angle_small + delta_angle_small * 4) - 160) * 0.75f * agitation_right,
+                    baseX_right - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 5), baseY_right - 30 + small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 5) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(start_angle_small + delta_angle_small * 5) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 5), baseY_right - 30 + small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 5) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(start_angle_small + delta_angle_small * 5) - 160) * 0.75f * agitation_right,
+                    baseX_right - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 6), baseY_right - 30 + small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 6) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(start_angle_small + delta_angle_small * 6) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 6), baseY_right - 30 + small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 6) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(start_angle_small + delta_angle_small * 6) - 160) * 0.75f * agitation_right,
+                    baseX_right - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 7), baseY_right - 30 + small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 7) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(start_angle_small + delta_angle_small * 7) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 7), baseY_right - 30 + small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 7) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(start_angle_small + delta_angle_small * 7) - 160) * 0.75f * agitation_right,
+                    baseX_right - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 8), baseY_right - 30 + small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 8) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(start_angle_small + delta_angle_small * 8) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 8), baseY_right - 30 + small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 8) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(start_angle_small + delta_angle_small * 8) - 160) * 0.75f * agitation_right,
+                    baseX_right - big_radius * MathF.Cos(start_angle_big + delta_angle_big * 9), baseY_right - 30 + small_radius - big_radius * MathF.Sin(start_angle_big + delta_angle_big * 9) - (baseY_right - 30 + small_radius - small_radius * MathF.Sin(start_angle_small + delta_angle_small * 9) - 160) * 0.75f * agitation_right);
+            }
+            //Bottom
+            //           X                                     Y                                          movement
+            {
+                Draw.Line(baseX_right + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 1), baseY_right + 30 - small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 1) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(start_angle_small + delta_angle_small * 1) - 160) * 0.75f * agitation_right,
+                    baseX_right + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 2), baseY_right + 30 - small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 2) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(start_angle_small + delta_angle_small * 2) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 2), baseY_right + 30 - small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 2) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(start_angle_small + delta_angle_small * 2) - 160) * 0.75f * agitation_right,
+                    baseX_right + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 3), baseY_right + 30 - small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 3) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(start_angle_small + delta_angle_small * 3) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 3), baseY_right + 30 - small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 3) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(start_angle_small + delta_angle_small * 3) - 160) * 0.75f * agitation_right,
+                    baseX_right + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 4), baseY_right + 30 - small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 4) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(start_angle_small + delta_angle_small * 4) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 4), baseY_right + 30 - small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 4) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(start_angle_small + delta_angle_small * 4) - 160) * 0.75f * agitation_right,
+                    baseX_right + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 5), baseY_right + 30 - small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 5) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(start_angle_small + delta_angle_small * 5) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 5), baseY_right + 30 - small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 5) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(start_angle_small + delta_angle_small * 5) - 160) * 0.75f * agitation_right,
+                    baseX_right + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 6), baseY_right + 30 - small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 6) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(start_angle_small + delta_angle_small * 6) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 6), baseY_right + 30 - small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 6) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(start_angle_small + delta_angle_small * 6) - 160) * 0.75f * agitation_right,
+                    baseX_right + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 7), baseY_right + 30 - small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 7) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(start_angle_small + delta_angle_small * 7) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 7), baseY_right + 30 - small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 7) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(start_angle_small + delta_angle_small * 7) - 160) * 0.75f * agitation_right,
+                    baseX_right + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 8), baseY_right + 30 - small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 8) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(start_angle_small + delta_angle_small * 8) - 160) * 0.75f * agitation_right);
+                Draw.Line(baseX_right + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 8), baseY_right + 30 - small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 8) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(start_angle_small + delta_angle_small * 8) - 160) * 0.75f * agitation_right,
+                    baseX_right + big_radius * MathF.Cos(start_angle_big + delta_angle_big * 9), baseY_right + 30 - small_radius + big_radius * MathF.Sin(start_angle_big + delta_angle_big * 9) - (baseY_right + 30 - small_radius + small_radius * MathF.Sin(start_angle_small + delta_angle_small * 9) - 160) * 0.75f * agitation_right);
             }
         }
     }
